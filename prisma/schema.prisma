@@ -1,0 +1,90 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Setting {
+  key   String @id
+  value String
+}
+
+model Judge {
+  id          Int       @id @default(autoincrement())
+  name        String
+  email       String
+  description String?
+  secret      String    @unique
+  alpha       Float     @default(10.0)
+  beta        Float     @default(1.0)
+  active      Boolean   @default(true)
+  read_welcome Boolean  @default(false)
+  next        Item?     @relation("JudgeToNextItem", fields: [nextId], references: [id])
+  nextId      Int?
+  prev        Item?     @relation("JudgeToPrevItem", fields: [prevId], references: [id])
+  prevId      Int?
+  updated     DateTime?
+  decisions   Decision[] @relation("JudgeToDecisions")
+  ignoredItems ItemsIgnoredByJudges[]
+  viewedItems ItemsViewedByJudges[]
+}
+
+model Item {
+  id          Int       @id @default(autoincrement())
+  name        String
+  location    String
+  description String
+  mu          Float     @default(0.0)
+  sigma_sq    Float     @default(1.0)
+  prioritized Boolean   @default(false)
+  active      Boolean   @default(true)
+  
+  // Relationships
+  assignedAsNext Judge[] @relation("JudgeToNextItem")
+  assignedAsPrev Judge[] @relation("JudgeToPrevItem")
+  
+  wonDecisions    Decision[] @relation("WinnerItem")
+  lostDecisions   Decision[] @relation("LoserItem")
+  
+  ignoredBy ItemsIgnoredByJudges[]
+  viewedBy  ItemsViewedByJudges[]
+}
+
+model Decision {
+  id          Int      @id @default(autoincrement())
+  judge       Judge    @relation("JudgeToDecisions", fields: [judgeId], references: [id])
+  judgeId     Int
+  winner      Item     @relation("WinnerItem", fields: [winnerId], references: [id])
+  winnerId    Int
+  loser       Item     @relation("LoserItem", fields: [loserId], references: [id])
+  loserId     Int
+  time        DateTime @default(now())
+}
+
+model ItemsIgnoredByJudges {
+  judge       Judge    @relation(fields: [judgeId], references: [id])
+  judgeId     Int
+  item        Item     @relation(fields: [itemId], references: [id])
+  itemId      Int
+
+  @@id([judgeId, itemId])
+}
+
+model ItemsViewedByJudges {
+  judge       Judge    @relation(fields: [judgeId], references: [id])
+  judgeId     Int
+  item        Item     @relation(fields: [itemId], references: [id])
+  itemId      Int
+
+  @@id([judgeId, itemId])
+}

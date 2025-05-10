@@ -25,3 +25,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+lib/generated/
+
+*.csv
+
+instruction-to-build/*.pdf
+instruction-to-build/models/
