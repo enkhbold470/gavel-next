@@ -1,5 +1,5 @@
 import { prisma } from './prisma';
-import { Prisma } from '@/lib/generated/prisma';
+import { Prisma } from '@prisma/client';
 import { MU_PRIOR, SIGMA_SQ_PRIOR } from './crowd-bt';
 import { ViewedJudge } from './types';
 

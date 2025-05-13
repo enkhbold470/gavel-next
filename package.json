@@ -5,15 +5,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "prisma migrate dev --name init && next start",
+    "start": "next start",
     "lint": "next lint",
     "prisma:generate": "prisma generate",
-    "prisma:migrate": "prisma migrate dev --name init",
-    "prisma:init": "prisma init --db",
     "prisma:studio": "prisma studio",
     "prisma:push": "prisma db push",
-    "prisma:migrate:prod": "prisma migrate deploy",
-    "prisma:studio:prod": "prisma studio --schema=./prisma/schema.prisma"
+    "prisma:migrate:dev": "prisma migrate dev",
+    "prisma:migrate:deploy": "prisma migrate deploy",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
