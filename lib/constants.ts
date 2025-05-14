@@ -11,17 +11,20 @@ export const TIMEOUT = 5;
 // Minimum number of views for an item
 export const MIN_VIEWS = 2;
 
+// Subject line for the email
+export const SUBJECT_LINE = 'DeAnza Hacks, MIT Gavel platform Login Link';
+
 // App settings
 export const WELCOME_MESSAGE = `
-# Welcome to Gavel
+# Welcome to DeAnza Hacks, MIT Gavel platform
 
-Gavel uses a **pairwise comparison** system to rank projects. You'll be shown two projects at a time and asked to choose which one is better.
+MIT Gavel uses a **pairwise comparison** system to rank projects. You'll be shown two projects at a time and asked to choose which one is better.
 
 Please confirm the name of the project **immediately beforehand** with the team members at the table.
 
 **Please don't skip unless absolutely necessary.** Skipping affects the quality of the final rankings.
 
-**Once you make a decision, you can't take it back.** Please consider your choices carefully.
+**Once you make a decision, you can't take it back.** Please consider your choices carefully. Click the magic link below to start judging.
 `;
 
 export const LOGGED_OUT_MESSAGE = `

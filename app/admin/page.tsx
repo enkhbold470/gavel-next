@@ -287,7 +287,7 @@ export default function AdminPage() {
           <span className="text-sm text-gray-500">1/1</span>
         </footer>
 
-        <div className="py-2 text-center text-sm text-gray-500">Powered by Gavel</div>
+        <div className="py-2 text-center text-sm text-gray-500">Powered by MIT Gavel</div>
       </div>
     </div>
   )
