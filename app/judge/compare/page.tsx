@@ -174,7 +174,7 @@ export default function ComparePage() {
           </div>
         </div>
       </div>
-      <footer className="py-2 text-center text-sm text-gray-500">powered by MIT gavel</footer>
+     
     </div>
   )
 }

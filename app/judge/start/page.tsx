@@ -157,7 +157,7 @@ export default function StartPage() {
           </div>
         </div>
       </main>
-      <footer className="py-2 text-center text-sm text-gray-500">powered by MIT gavel</footer>
+
     </div>
   )
 }
