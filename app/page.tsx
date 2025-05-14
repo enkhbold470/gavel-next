@@ -6,17 +6,10 @@ export default function Home() {
     <div className="flex min-h-screen flex-col items-center justify-center bg-white p-4">
       <div className="w-full max-w-md space-y-8 text-center">
         <div className="space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight text-primary">MIT Gavel</h1>
+          <h1 className="text-4xl font-bold tracking-tight text-primary">De Anza Hacks, MIT Gavel</h1>
           <p className="text-xl text-gray-600">Accurate & Efficient Hackathon Judging</p>
         </div>
-        <div className="space-y-4">
-          <Button asChild className="w-full bg-primary hover:bg-primary/90">
-            <Link href="/judge">Judge Interface</Link>
-          </Button>
-          <Button asChild className="w-full bg-primary hover:bg-primary/90">
-            <Link href="/admin">Admin Panel</Link>
-          </Button>
-        </div>
+     
         <p className="text-sm text-gray-500">Powered by MIT Gavel</p>
       </div>
     </div>
