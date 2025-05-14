@@ -1,11 +1,15 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+// Add indicator of which judge is logged in
+import { cookies } from 'next/headers';
 
-export default function JudgePage() {
+export default async function JudgePage() {
+  const cookieStore = await cookies();
+  const judgeId = cookieStore.get('judge_id');
   return (
     <div className="flex min-h-screen flex-col bg-white">
       <header className="w-full bg-primary py-4">
-        <h1 className="text-center text-xl font-bold uppercase text-white">WELCOME</h1>
+        <h1 className="text-center text-xl font-bold uppercase text-white">WELCOME, JUDGE #{judgeId?.value}</h1>
       </header>
       <main className="flex-1 p-4">
         <div className="mx-auto max-w-md space-y-6">

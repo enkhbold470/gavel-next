@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { ProjectsTable } from "@/components/projects-table"
 import { JudgesTable } from "@/components/judges-table"
 import { GlobalSettings } from "@/components/global-settings"
+import { useRouter } from "next/navigation";
 
 export default function AdminPage() {
   const [stats, setStats] = useState({
@@ -26,7 +27,15 @@ export default function AdminPage() {
   
   const projectsFormRef = useRef<HTMLFormElement>(null);
   const judgesFormRef = useRef<HTMLFormElement>(null); // Commented out as per instructions
-  
+  const router = useRouter();
+
+  async function handleLogout() {
+    await fetch('/api/admin/auth/logout', {
+      method: 'POST',
+    });
+    router.push('/admin/login');
+  }
+
   // Fetch stats on mount
   useEffect(() => {
     async function fetchStats() {
@@ -147,8 +156,8 @@ export default function AdminPage() {
       <div className="container mx-auto p-4">
         <div className="flex items-center justify-between py-2">
           <span className="text-sm text-gray-500">{new Date().toLocaleDateString()}</span>
-          <h1 className="text-xl font-bold">Admin - Gavel</h1>
-          <div></div> {/* Empty div for flex spacing */}
+          <h1 className="text-xl font-bold">De Anza Hacks, MIT Gavel Admin Panel</h1>
+          <div><Button onClick={handleLogout}>Logout</Button></div> {/* Empty div for flex spacing */}
         </div>
 
         <section className="mt-6">
@@ -279,11 +288,13 @@ export default function AdminPage() {
           </header>
           <div className="overflow-x-auto">
             <GlobalSettings />
+           
           </div>
+          
         </section>
 
         <footer className="flex items-center justify-between py-4">
-          <span className="text-sm text-gray-500">localhost:5000/admin/</span>
+          <span className="text-sm text-gray-500">https://gavel-next.vercel.app/admin/</span>
           <span className="text-sm text-gray-500">1/1</span>
         </footer>
 
