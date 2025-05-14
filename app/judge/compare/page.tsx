@@ -101,9 +101,10 @@ export default function ComparePage() {
         <main className="flex-1 p-4">
           <div className="mx-auto max-w-md space-y-6 text-center">
             <h2 className="text-2xl font-bold">{assignment?.message || 'Waiting for items to compare...'}</h2>
+            <p>Thank you for your time and effort in judging the projects. There are currently no projects assigned for you to judge, or you have completed judging.</p>
             {assignment?.message && <p>{assignment.message}</p>}
             {!assignment?.message && <p>If you see this for a while, try refreshing or going back to the start.</p>}
-            <Button onClick={() => router.push('/judge/start')} className="mt-4">Go to Start Page</Button>
+            {/* <Button onClick={() => router.push('/judge/start')} className="mt-4">Go to Start Page</Button> */}
           </div>
         </main>
         <footer className="py-2 text-center text-sm text-gray-500">powered by MIT gavel</footer>
@@ -157,17 +158,17 @@ export default function ComparePage() {
           <header className="w-full bg-action-negative py-2">
             <h2 className="text-center text-lg font-bold uppercase text-white">VOTE</h2>
           </header>
-          <div className="p-4">
+          <div className="p-4 flex flex-col items-center">
             <p className="mb-4 text-center text-lg">Which one is better?</p>
-            <div className="flex gap-2">
-              <Button onClick={() => handleVote('Previous')} disabled={isLoading || !prevItem} className="flex-1 bg-previous uppercase text-black hover:bg-previous/90">
+            <div className="flex gap-2 w-full">
+              <Button onClick={() => handleVote('Previous')} disabled={isLoading || !prevItem} className="flex-1 h-16 border border-black bg-previous uppercase text-black hover:bg-previous/90">
                 {isLoading ? '...' : 'PREVIOUS'}
               </Button>
-              <Button onClick={() => handleVote('Current')} disabled={isLoading || !nextItem} className="flex-1 bg-current uppercase text-white hover:bg-current/90">
+              <Button onClick={() => handleVote('Current')} disabled={isLoading || !nextItem} className="flex-1 h-16 border border-black bg-current uppercase text-white hover:bg-current/90">
                 {isLoading ? '...' : 'CURRENT'}
               </Button>
             </div>
-            <Button onClick={() => handleVote('Skip')} disabled={isLoading || !nextItem} className="mt-3 w-full bg-skip uppercase text-black hover:bg-skip/90">
+            <Button onClick={() => handleVote('Skip')} disabled={isLoading || !nextItem} className=" border w-1/2 border-black mt-8 bg-red-300 uppercase text-black hover:bg-red-300/90">
               {isLoading ? '...' : 'SKIP CURRENT'}
             </Button>
           </div>

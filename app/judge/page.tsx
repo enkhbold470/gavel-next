@@ -37,7 +37,7 @@ export default async function JudgePage() {
             If you have any questions or need assistance, please ask a staff member for help.
           </p>
           <Button asChild className="w-full bg-action-positive uppercase text-white hover:bg-action-positive/90">
-            <Link href="/judge/start">DONE</Link>
+            <Link href="/judge/start">START JUDGING</Link>
           </Button>
         </div>
       </main>

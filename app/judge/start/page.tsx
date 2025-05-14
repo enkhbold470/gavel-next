@@ -119,10 +119,10 @@ export default function StartPage() {
         <main className="flex-1 p-4">
           <div className="mx-auto max-w-md space-y-6 text-center">
             <h2 className="text-2xl font-bold">{assignment?.message || 'No items available'}</h2>
-            <p>There are currently no projects assigned for you to judge, or you have completed judging.</p>
-            <Button asChild className="mt-4 bg-action-positive uppercase text-white hover:bg-action-positive/90">
+            <p>Thank you for your time and effort in judging the projects. There are currently no projects assigned for you to judge, or you have completed judging.</p>
+            {/* <Button asChild className="mt-4 bg-action-positive uppercase text-white hover:bg-action-positive/90">
               <Link href="/">Go to Homepage</Link>
-            </Button>
+            </Button> */}
           </div>
         </main>
         <footer className="py-2 text-center text-sm text-gray-500">powered by MIT gavel</footer>
@@ -146,13 +146,14 @@ export default function StartPage() {
               <span className="font-bold">Location:</span> {currentItem.location}
             </p>
           }
-          <div className="space-y-3 pt-4">
-            <Button onClick={handleSkip} disabled={isLoading} className="w-full bg-skip uppercase text-black hover:bg-skip/90">
-              {isLoading ? 'Skipping...' : 'SKIP'}
-            </Button>
-            <Button onClick={handleDone} disabled={isLoading} className="w-full bg-action-positive uppercase text-white hover:bg-action-positive/90">
+          <div className="space-y-3 pt-4 gap-4">
+          <Button onClick={handleDone} disabled={isLoading} className="w-full h-16 bg-action-positive uppercase text-white hover:bg-action-positive/90">
               {isLoading ? 'Processing...' : 'DONE (Proceed to Compare)'}
             </Button>
+            <Button onClick={handleSkip} disabled={isLoading} className="w-full bg-red-300 uppercase text-black hover:bg-red-300/90">
+              {isLoading ? 'Skipping...' : 'SKIP'}
+            </Button>
+         
           </div>
         </div>
       </main>
