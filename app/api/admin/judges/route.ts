@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import * as JudgeService from '@/lib/judge-service';
 import { parseCSV } from '@/lib/utils';
 import { prisma } from '@/lib/prisma';
+import { sendEmail } from '@/lib/sendGrid';
+import { WELCOME_MESSAGE, SUBJECT_LINE } from '@/lib/constants';
 
 export async function GET() {
   try {
@@ -136,7 +138,11 @@ export async function POST(request: NextRequest) {
       const loginLink = `${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/judge/login/${judge.secret}`;
       console.log(`Login link for judge ${judgeId}: ${loginLink}`);
       
-      // In a real implementation, you would send an email here
+      // In a real implementation, you would send an email here with sendGrid
+      await sendEmail(judge.email, SUBJECT_LINE, WELCOME_MESSAGE + loginLink);
+
+
+
       
       return NextResponse.json({ 
         success: true, 
